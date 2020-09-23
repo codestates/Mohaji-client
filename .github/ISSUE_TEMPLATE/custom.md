@@ -2,7 +2,7 @@
 name: Component
 about: Component template
 title: '[Component]'
-labels: ''
+labels: 'group: client'
 assignees: ''
 
 ---
