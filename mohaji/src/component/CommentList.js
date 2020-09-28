@@ -1,21 +1,13 @@
 import './CommentList.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import { loadCommentList, setCommentList, setIsMoreRead } from '../actions';
+import { loadCommentList, setIsMoreRead } from '../actions';
 import CommentItem from './CommentItem'
 
 class CommentList extends React.Component {
   constructor(props) {
     super(props);
     this.handleMoreRead = this.handleMoreRead.bind(this);
-  }
-
-  componentDidMount() { // 해당 구문은 spotinfo가 완성되면 지울것.(spotinfo에서 이러한 역할이 이루어 져야 함.)
-    this.props.dispatch(setCommentList(Array(5).fill('').map(()=>({
-      nickname: 'Pig-Cola',
-      create_at: new Date().toLocaleString(),
-      msg: '안녕하세요'
-    }))));
   }
 
   handleMoreRead() {
