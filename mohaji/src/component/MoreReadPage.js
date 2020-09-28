@@ -23,7 +23,8 @@ class MoreReadPage extends Component {
 
     render() {
         return (
-            <div>
+            <div className="MoreReadPage">
+
                 <CommentList />
             </div>
         )
@@ -36,3 +37,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(MoreReadPage);
 //더보기 버튼을 눌럿을때 추가한다.
+//inline block 스크롤 css 하는 방법 댓글 스크롤, 스팟 스크롤 따로 동작 방법 

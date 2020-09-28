@@ -3,6 +3,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { loadCommentList, setCommentList, setIsMoreRead } from '../actions';
 import CommentItem from './CommentItem'
+import { Switch, Route, Redirect, Link } from "react-router-dom";//link: 유저라우트 component 역활 리크 구성 방법 
+import MoreReadPage from './MoreReadPage';
 
 class CommentList extends React.Component {
   constructor(props) {
@@ -25,16 +27,28 @@ class CommentList extends React.Component {
         create_at: new Date().toLocaleString(),
         msg: '안녕하세요'
       }))));
-    } else {
-      // MoreRead 페이지로 이동 redirect
-
     }
+    // else {
+    // MoreRead 페이지로 이동 redirect
+    //리엑트 라우터로 moreread에 보내고
+    //리엑트 돔으로 렌더링 하라 
+    // axios.post('./MoreReadPage')
+    // .then(this.props.isMoreRead);
+    // axios.post("./MoreReadPage")
+    // .then((res) => {
+    //   this.setState({setIsMoreRead})
+    // }
+
   }
+
+
+
 
   render() {
     // 하단에 쓰여진 val.nickname 등의 변수 이름은
     // api에 따라 달라질 수 있음.
     return (
+
       <div>
         {this.props.commentList.map((val, i) => <CommentItem
           nickname={val.nickname}
@@ -42,11 +56,29 @@ class CommentList extends React.Component {
           msg={val.msg}
           key={i}
         />)}
-        <a href='#'><div id='more' onClick={this.handleMoreRead}>더보기</div></a>
-      </div>
+        <Link to="/" component={MoreReadPage} />      </div>
+
+
+
+
+
+
+
+
+      // <Link to="/" component={MoreReadPage} />
+
+
+
+
+
+
+
+
+
     );
   }
 }
+
 
 const mapStateToProps = state => ({
   ...state.commentReducer,

@@ -10,6 +10,7 @@ import thunk from "redux-thunk";
 import './index.css';
 import App from './component/App';
 import reducers from "./reducers";
+import CommentList from './component/CommentList';
 
 
 const composeEnhancers = compose;
@@ -19,6 +20,7 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 ReactDOM.render(
   <Provider store={store}>
     <App />
+    <CommentList />
   </Provider>,
   document.getElementById('root')
 );
