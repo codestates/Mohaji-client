@@ -1,12 +1,14 @@
 .comment {
     display: block;
-    width: 18%;
+    width: inherit;
     margin-top: 10px;
-    padding-bottom: 10px;
-    border-bottom: solid 1px #c0c0c0;
+    padding: 10px;
+    border-bottom: solid 1px #cfcfcf;
 }
 .nickname {
     float: left;
+    font-size: 0.75em;
+    font-weight: 700;
 }
 
 .create_at {
