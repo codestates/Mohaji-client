@@ -1,0 +1,17 @@
+.spot-item {
+    border-radius: 4px;
+    margin: 1px;
+    padding: 5px;
+    cursor: pointer;
+}
+.spot-item:hover {
+    border: solid 1px #ff0000;
+}
+
+.spot-name {
+    float: left;
+}
+
+.spot-time {
+    text-align: right;
+}
