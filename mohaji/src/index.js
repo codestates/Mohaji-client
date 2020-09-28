@@ -7,6 +7,9 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 
 
+import {BrowserRouter} from 'react-router-dom'
+
+
 import './index.css';
 import App from './component/App';
 import reducers from "./reducers";
@@ -19,8 +22,14 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>
+<<<<<<< HEAD
     <App />
     <CommentList />
+=======
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+>>>>>>> befb79dace57c4cd165513429a452dcedff14070
   </Provider>,
   document.getElementById('root')
 );
