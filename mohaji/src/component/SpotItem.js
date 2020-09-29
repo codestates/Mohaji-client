@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
 import { setCurrSpot } from '../actions';
 import './SpotItem.css';
 
@@ -10,8 +11,9 @@ class SpotItem extends React.Component{
 
   render() {
     let style = this.props.currSpot === this.props.spot ?
-    {border: 'solid 1px #00ff00'} : {border: 'solid 1px #000000'}
+    {border: 'solid 1px #00ff00'} : undefined
     return (
+      <Link to='/spot-list/info'>
       <div
         className='spot-item'
         onClick={this.props.onItemClick}
@@ -23,6 +25,7 @@ class SpotItem extends React.Component{
         </div>
         <div>{this.props.spot.spotAdress}</div>
       </div>
+      </Link>
     );
   }
 }
