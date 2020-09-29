@@ -10,7 +10,7 @@ class SpotInfo extends React.Component {
   }
 
   componentDidMount() { // 해당 구문은 comment를 불러오는 API를 호출 하여야 함.
-    this.props.dispatch(setCommentList(Array(5).fill('').map(()=>({
+    this.props.dispatch(setCommentList(Array(5).fill('').map(() => ({
       nickname: 'Pig-Cola',
       create_at: new Date().toLocaleString(),
       msg: '안녕하세요'
@@ -18,7 +18,7 @@ class SpotInfo extends React.Component {
   }
 
   render() {
-    let {spotName, spotAdress} = this.props.currSpot || {}
+    let { spotName, spotAdress } = this.props.currSpot || {}
     return (
       <div>
         <div className='spot-info'>
