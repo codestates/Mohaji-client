@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { setIsMoreRead } from '../actions'
 import CommentList from './CommentList'
 
@@ -24,7 +25,9 @@ class MoreReadPage extends Component {
     render() {
         return (
             <div className="MoreReadPage">
-                <button>돌아가기(아이콘)</button>
+                <Link to='/spot-list/info'>
+                    <button>돌아가기(아이콘)</button>
+                </Link>
                 <CommentList />
             </div>
         )
