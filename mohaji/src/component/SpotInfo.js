@@ -1,12 +1,14 @@
 import React from 'react';
 import './SpotInfo.css';
 import { connect } from 'react-redux';
-import { setCommentList } from '../actions';
+import { setCommentList, setCurrSpot } from '../actions';
 import CommentList from './CommentList';
+import { Link, Redirect } from 'react-router-dom';
 
 class SpotInfo extends React.Component {
   constructor(props) {
     super(props);
+    this.handleExitClick = this.handleExitClick.bind(this);
   }
 
   componentDidMount() { // 해당 구문은 comment를 불러오는 API를 호출 하여야 함.
@@ -17,16 +19,27 @@ class SpotInfo extends React.Component {
     }))));
   }
 
+  handleExitClick() {
+    this.props.dispatch(setCurrSpot(null));
+  }
+
   render() {
     let {spotName, spotAdress} = this.props.currSpot || {}
     return (
       <div>
+        <Link to='/spot-list'>
+          <button
+            style={{ float: 'right' }}
+            onClick={this.handleExitClick}
+          >
+            닫기
+          </button>
+        </Link>
+        <br />
         <div className='spot-info'>
           <div>업체사진</div>
-          <div className='spot-info-1'>
-            <div className='spot-name'>{spotName || '업체이름'}</div>
-            <div className='spot-time'>영업 시간</div>
-          </div>
+          <div className='spot-name'>{spotName || '업체이름'}</div>
+          <div className='spot-time'>영업 시간</div>
           <div>{spotAdress || '주소'}</div>
           <div>상세정보</div>
         </div>

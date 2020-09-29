@@ -1,9 +1,11 @@
 .spot-item {
+    border: solid 1px #000000;
     border-radius: 4px;
     margin: 1px;
     padding: 5px;
     cursor: pointer;
 }
+
 .spot-item:hover {
     border: solid 1px #ff0000;
 }
@@ -14,4 +16,9 @@
 
 .spot-time {
     text-align: right;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
 }
