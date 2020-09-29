@@ -6,26 +6,27 @@ export const SET_ISMOREREAD = 'SET_ISMOREREAD';
 
 
 export const setCommentList = commentList => ({
-  type:SET_COMMENTLIST,
+  type: SET_COMMENTLIST,
   commentList
 });
 
 export const loadCommentList = commentList => ({
-  type:LOAD_COMMENTLIST,
+  type: LOAD_COMMENTLIST,
   commentList
 })
 
 export const setSpotList = spotList => ({
-  type:SET_SPOTLIST,
+  type: SET_SPOTLIST,
   spotList
 });
 
 export const setCurrSpot = spot => ({
-  type:SET_CURRSPOT,
+  type: SET_CURRSPOT,
   spot
 });
 
 export const setIsMoreRead = bool => ({
-  type:SET_ISMOREREAD,
+  type: SET_ISMOREREAD,
   bool
 })
+

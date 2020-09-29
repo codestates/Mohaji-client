@@ -9,7 +9,7 @@ class CommentItem extends React.Component {
   render() {
     return (
       <div className='comment'>
-        <div style={{display: 'inline-block', width:'100%'}}>
+        <div style={{ display: 'inline-block', width: '100%' }}>
           <div className='nickname'>{this.props.nickname}</div>
           <div className='create_at'>{this.props.create_at}</div>
         </div>

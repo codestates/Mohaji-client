@@ -24,7 +24,7 @@ class MoreReadPage extends Component {
     render() {
         return (
             <div className="MoreReadPage">
-
+                <button>돌아가기(아이콘)</button>
                 <CommentList />
             </div>
         )

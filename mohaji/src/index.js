@@ -7,13 +7,16 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 
 
-import {BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 
 import './index.css';
 import App from './component/App';
 import reducers from "./reducers";
-import CommentList from './component/CommentList';
+import SpotList from './component/SpotList';
+import SpotInfo from './component/SpotInfo';
+import MoreReadPage from './component/MoreReadPage';
+import MYPage from './component/MyPage';
 
 
 const composeEnhancers = compose;
@@ -22,15 +25,15 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>
-<<<<<<< HEAD
-    <App />
-    <CommentList />
-=======
     <BrowserRouter>
       <App />
+      {/* <SpotList />
+      <SpotInfo />
+      <MoreReadPage /> */}
+      <MYPage />
     </BrowserRouter>
->>>>>>> befb79dace57c4cd165513429a452dcedff14070
-  </Provider>,
+  </Provider>
+  ,
   document.getElementById('root')
 );
 
