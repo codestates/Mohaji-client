@@ -18,11 +18,15 @@ class CommentList extends React.Component {
         create_at: new Date().toLocaleString(),
         msg: '안녕하세요'
       }))));
-    } else {
-      // MoreRead 페이지로 이동
-      // <Redirect to='이동할 Route의 path'/> // MoreRead Component 구축 후 주석 해제, side바 라우터 구축 후 함, 안될시 더보기에 링크로 감쌈
-      // this.props.dispatch(setIsMoreRead(true)); // 해당 라인은 MoreRead Component가 구축되면 지울것(주석처리)
     }
+
+    // 하단의 검증은 필요없어서 주석처리함 
+
+    // else {
+    //   // MoreRead 페이지로 이동
+    //   // <Redirect to='이동할 Route의 path'/> // MoreRead Component 구축 후 주석 해제, side바 라우터 구축 후 함, 안될시 더보기에 링크로 감쌈
+    //   // this.props.dispatch(setIsMoreRead(true)); // 해당 라인은 MoreRead Component가 구축되면 지울것(주석처리)
+    // }
   }
 
 
@@ -31,11 +35,12 @@ class CommentList extends React.Component {
   render() {
     // 하단에 쓰여진 val.nickname 등의 변수 이름은
     // api에 따라 달라질 수 있음.
+    let { isMoreRead } = this.props
     return (
 
       <div>
         {this.props.commentList.reduce((acc, val, i) => {
-          if (!this.props.isMoreRead) {
+          if (!isMoreRead) {
             if (i < 5) {
               acc.push(<CommentItem
                 nickname={val.nickname}
@@ -54,7 +59,12 @@ class CommentList extends React.Component {
           }
           return acc;
         }, [])}
-        <div id='more' onClick={this.handleMoreRead}>더보기</div>
+        {!isMoreRead ?
+          <Link to='/spot-list/more-read'>
+            <div id='more'>더보기</div>
+          </Link> :
+          <div id='more' onClick={this.handleMoreRead}>더보기</div>
+          }
       </div>
     );
   }
