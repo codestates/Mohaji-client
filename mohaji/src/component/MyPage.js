@@ -6,15 +6,17 @@ class MyPage extends Component {
         super(props)
     }
 
+    //
+
 
     render() {
         return (
-            <div className='MYPage'>
+            <div className='mypage'>
                 <div style={{ display: 'inline-block', width: '100%' }}>
                     <div>프로필 사진</div>
-                    <div className='MYPage-info-1'>
-                        <div className='MYPage-nickname'>닉네임 : 파니니</div>
-                        <div className='MYPage-email'>이메일: rolenche@gmail.com</div>
+                    <div className='mypage-info-1'>
+                        <div className='mypage-nickname'>닉네임 : 파니니</div>
+                        <div className='mypage-email'>이메일: rolenche@gmail.com</div>
                         <div className='MYPage-tag'>선호하는테그: #노래방 #피씨방</div>
                     </div>
                 </div>
@@ -22,6 +24,5 @@ class MyPage extends Component {
         )
     }
 }
-
 
 export default MyPage

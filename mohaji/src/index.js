@@ -13,6 +13,8 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css';
 import App from './component/App';
 import reducers from "./reducers";
+import MyPage from './component/MyPage';
+import SignIn from './component/SignIn';
 
 
 const composeEnhancers = compose;
@@ -23,6 +25,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <App />
+      <SignIn />
     </BrowserRouter>
   </Provider>
   ,
