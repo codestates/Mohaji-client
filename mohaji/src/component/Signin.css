@@ -1,8 +1,10 @@
-.mypage{
+.signin{
     border:  solid 5px #764abc;
     margin: 10px;
     color: #764abc;
     padding: 10px; 
-    /* 간격 */
-  }
-  
+}
+
+.signin-img{
+    width: 150px;
+}

@@ -3,6 +3,7 @@ export const SET_CURRSPOT = 'SET_CURRSPOT';
 export const SET_COMMENTLIST = 'SET_COMMENTLIST';
 export const LOAD_COMMENTLIST = 'LOAD_COMMENTLIST'
 export const SET_ISMOREREAD = 'SET_ISMOREREAD';
+export const SET_LOGIN = 'SET_LOGIN';
 
 
 export const setCommentList = commentList => ({
@@ -30,3 +31,7 @@ export const setIsMoreRead = bool => ({
   bool
 })
 
+export const setLogin = bool => ({
+  type: SET_LOGIN,
+  bool
+})
