@@ -6,6 +6,8 @@ import axios from 'axios';
 // 해당 Component를 렌더할 경우 반드시
 // default와 selected 를 props로 [true, false]값을 넣어야 한다.
 // 예: <SortTags default={false} selected={false}/>
+// user가 선택한 tag는 props로 usertags에 배열로 전달한다.
+// (userinfo API를 호출할 경우 tag부분이 이미 배열로 존재한다.)
 class SortTags extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +31,14 @@ class SortTags extends React.Component {
       for (let i of result.data) {
         this.setState({
           select: {...this.state.select, [i.id]: this.props.default}
-        })
+        });
+      }
+      if (this.props.usertags) {
+        for (let i of this.props.usertags) {
+          this.setState({
+            select: {...this.state.select, [i]: true}
+          });
+        }
       }
     })()
   }
