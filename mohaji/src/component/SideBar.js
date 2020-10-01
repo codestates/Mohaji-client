@@ -18,6 +18,7 @@ class SideBar extends React.Component {
           <Switch>
             <Route path='/spot-list' component={SpotList} />
             <Route path="/sign-in" component={SignIn} />
+
           </Switch>
         </div>
         <div id='side-extend'>
