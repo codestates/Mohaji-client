@@ -28,7 +28,13 @@ class SignIn extends Component {
             .catch(err => (err.response));
         if (result.status === 200) {
             this.props.dispatch(setLogin(true))
-        } else if (result.status === 404) {
+        }
+        else if (result.status === 404) {
+            // if (this.state.password === "") {
+            //     alert('input password')
+            // } else if (this.state.email === "") {
+            //     alert('input email')
+            // } 
             alert('잘못된 아이디 혹은 비밀번호입니다')
         } else if (result.status === 500) {
             alert('unknown error')
