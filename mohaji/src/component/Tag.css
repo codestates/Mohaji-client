@@ -1,0 +1,20 @@
+.tag {
+    font-size: 0.5em;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 1px;
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-left: 1px;
+    margin-right: 1px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.tag-u {
+    border: solid 1px #7a7a7a;
+}
+
+.tag-s {
+    border: solid 1px #09ff00;
+}
