@@ -17,13 +17,13 @@ class SideBar extends React.Component {
         <div id='side-bar'>
           <Switch>
             <Route path='/spot-list' component={SpotList} />
+            <Route path="/sign-in" component={SignIn} />
           </Switch>
         </div>
         <div id='side-extend'>
           <Switch>
             <Route path='/spot-list/info' component={SpotInfo} />
             <Route path='/spot-list/more-read' component={MoreReadPage} />
-            <Route path="/Signin" component={SignIn} />
 
 
           </Switch>
