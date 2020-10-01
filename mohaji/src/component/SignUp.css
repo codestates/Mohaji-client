@@ -1,0 +1,11 @@
+.signup{
+    display: grid;
+    place-items: center;
+  }
+
+.signup-input-box{
+    border: 100px solid gray;
+    margin: 10px;
+    color: gray;
+    padding: 10px; 
+    /* 간격 */}
