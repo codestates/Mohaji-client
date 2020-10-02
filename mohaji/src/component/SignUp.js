@@ -12,6 +12,7 @@ export default class SignUp extends Component {
             nickname: "",
             profile: "",
             tag: ""
+
         }
         this.handleInputValue = this.handleInputValue.bind(this);
 
@@ -21,11 +22,19 @@ export default class SignUp extends Component {
         this.setState({ [key]: e.target.value });
     };
 
+
+
     render() {
         let { isSocialLogin } = this.state
+        let { handleClose, children } = this.props
+        let showHide = this.props.show ? "modal display-block" : "modal display-none"
+
         return (
-            <div className="signup">
+
+
+            <div className={showHide}>
                 <div className="signup-input-box">
+                    {children}
                     <img className="signin-img" src="mohaji.png" />
                     {isSocialLogin ?
                         ("") : (
@@ -83,9 +92,11 @@ export default class SignUp extends Component {
                         // onChange={this.handleInputValue("Tag")}
                         ></input>
                     </div>
+                    <button onClick={handleClose}>닫기</button>
                 </div>
 
             </div>
+
         )
     }
 }
