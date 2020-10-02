@@ -16,8 +16,6 @@ class MyPage extends Component {
     render() {
         return (
             <div className='mypage'>
-
-
                 <div style={{ display: 'inline-block', width: '100%' }}>
                     {isLogin ? <div className='mypage-info-1'>
                         <div className='mypage-nickname'>닉네임 : {this.props.nickname}</div>

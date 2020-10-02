@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Signin.css';
-import { Link } from 'react-router-dom';
 import { setLogin } from '../actions'
 import axios from 'axios'
 import { GoogleLogin } from 'react-google-login'
+import SignUp from './SignUp';
 
 class SignIn extends Component {
     constructor(props) {
@@ -12,7 +12,8 @@ class SignIn extends Component {
 
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            show: false
         }
 
         this.handleInputValue = this.handleInputValue.bind(this);
@@ -24,6 +25,13 @@ class SignIn extends Component {
     // componentDidMount() {
     //     this.googleSDK();
     // }
+    showModal = () => {
+        this.setState({ show: true });
+    };
+
+    hideModal = () => {
+        this.setState({ show: false });
+    };
 
     responseGoogle = (googleUser) => {
         console.log(googleUser);
@@ -115,7 +123,9 @@ class SignIn extends Component {
                 >
                     로그인
             </button>
-                <button className="signin-signup-button"><Link to="/SignUp">회원가입</Link></button>
+                <SignUp show={this.state.show} handleClose={this.hideModal}></SignUp>
+                <button className="signin-signup-button" type='button' onClick={this.showModal}>회원가입</button>
+
                 <div className="g-signin2" data-onsuccess="onSignIn"></div>
                 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
