@@ -5,7 +5,8 @@
 
 .signup-input-box{
     
-      background: blue;
+      position: fixed;
+      background: white;
       width: 80%;
       height: auto;
       top:50%;

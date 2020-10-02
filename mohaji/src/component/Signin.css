@@ -1,10 +1,22 @@
 .signin{
-    border:  solid 5px #764abc;
+    border:  solid 5px #ff9f40;
     margin: 10px;
-    color: #764abc;
+    color: #ff9f40;
     padding: 10px; 
 }
+.signin-center{
+    text-align: center;
 
+}
 .signin-img{
-    width: 150px;
+    width: 50%;
+    
+}
+
+.signin-signup-button{
+    float:right;
+}
+
+.google{
+    text-align: center;
 }
