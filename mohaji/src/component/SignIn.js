@@ -5,6 +5,7 @@ import { setLogin } from '../actions'
 import axios from 'axios'
 import { GoogleLogin } from 'react-google-login'
 import SignUp from './SignUp';
+import { Redirect, browserHistory } from 'react-router-dom';
 
 class SignIn extends Component {
     constructor(props) {
@@ -13,7 +14,8 @@ class SignIn extends Component {
         this.state = {
             email: "",
             password: "",
-            show: false
+            show: false,
+            redirect: false
         }
 
         this.handleInputValue = this.handleInputValue.bind(this);
@@ -33,7 +35,7 @@ class SignIn extends Component {
         this.setState({ show: false });
     };
 
-    responseGoogle = (googleUser) => {
+    responseGoogle = async (googleUser) => {
         console.log(googleUser);
         let profile = googleUser.getBasicProfile();
         let id_token = googleUser.getAuthResponse().id_token;
@@ -42,6 +44,25 @@ class SignIn extends Component {
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
         console.log(`id_token: ${id_token}`);
+        // let result = await axios({
+        //     method: 'post',
+        //     url: 'http://localhost:4000/user/social-signin',
+        //     data: {
+        //         token: id_token
+        //     },
+        //     withCredentials: true
+        // }).catch(err => (err.response))
+        // if (result.status === 200) {
+        //     if (result.data.found) {
+        //         alert('')
+        //     } else {
+        //         window.location.href = '/signup'
+        //         //link window location href 수정하면 됨, state 값이 유지되어야함.
+        //         //redux 써야함 state값이 유지되는 
+        //     }
+        // } else if (result.status === 400) {
+        //     alert('올바르지 않은 접근입니다.')
+        // }
     }
 
     responseFail = (err) => {
@@ -79,64 +100,71 @@ class SignIn extends Component {
 
 
     // 200, 404 
-
+    //signup 라우터 처리해야함 
     render() {
         return (
             <div className='signin'>
-                <img className="signin-img" src="/mohaji.png"
-                />
-                <div>
-                    <input
+                <div className='signin-center'>
+                    <img className="signin-img" src="/mohaji.png"
+                    />
+                    <div className='signin-email-input'>
+                        <input
+                            style={{
+                                width: '70%',
+                                height: "30px",
+                                margin: "5px",
+                                borderRadius: "5px",
+                            }}
+                            type="email"
+                            placeholder="이메일을 입력 해주세요"
+                            onChange={this.handleInputValue("email")}
+                        ></input>
+                    </div>
+                    <div className='signin-password-input'>
+                        <input
+                            style={{
+                                width: '70%',
+                                height: "30px",
+                                margin: "5px",
+                                borderRadius: "5px",
+                            }}
+                            type="password"
+                            placeholder="비밀번호를 입력 해주세요"
+                            onChange={this.handleInputValue("password")}
+                        ></input>
+                    </div>
+                    <button
                         style={{
-                            width: "400px",
+                            width: "72%",
                             height: "30px",
                             margin: "5px",
                             borderRadius: "5px",
+                            backgroundColor: "skyblue",
                         }}
-                        type="email"
-                        placeholder="이메일을 입력 해주세요"
-                        onChange={this.handleInputValue("email")}
-                    ></input>
-                </div>
-                <div>
-                    <input
-                        style={{
-                            width: "400px",
-                            height: "30px",
-                            margin: "5px",
-                            borderRadius: "5px",
-                        }}
-                        type="password"
-                        placeholder="비밀번호를 입력 해주세요"
-                        onChange={this.handleInputValue("password")}
-                    ></input>
-                </div>
-                <button
-                    style={{
-                        width: "200px",
-                        height: "30px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "skyblue",
-                    }}
-                    onClick={this.handleLoginClick}
-                >
-                    로그인
+                        onClick={this.handleLoginClick}
+                    >
+                        로그인
             </button>
+                </div>
+
+                <br />
                 <SignUp show={this.state.show} handleClose={this.hideModal}></SignUp>
                 <button className="signin-signup-button" type='button' onClick={this.showModal}>회원가입</button>
 
-                <div className="g-signin2" data-onsuccess="onSignIn"></div>
-                <script src="https://apis.google.com/js/platform.js" async defer></script>
+                <div className='google'>
+                    <div className="g-signin2" data-onsuccess="onSignIn"></div>
+                    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 
-                <GoogleLogin
-                    clientId={"1014688682343-j2r0ck0oc2qvb2l32dnp1apnbjd0kfbq.apps.googleusercontent.com"}
-                    buttonText="google"
-                    onSuccess={this.responseGoogle}
-                    onFailure={this.responseFail}
-                />
-                {/* <a href="#" onclick="signOut();">Sign out</a> */}
+                    <GoogleLogin
+                        clientId={"1014688682343-j2r0ck0oc2qvb2l32dnp1apnbjd0kfbq.apps.googleusercontent.com"}
+                        buttonText="google"
+                        onSuccess={this.responseGoogle}
+
+                        onFailure={this.responseFail}
+                    />
+                </div>
+
 
 
 

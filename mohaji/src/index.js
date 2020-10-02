@@ -21,8 +21,6 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <App />
-      <NavBar />
-      <SideBar />
     </BrowserRouter>
   </Provider>
   ,
