@@ -19,18 +19,25 @@ class Map extends React.Component {
   componentDidMount() {
     let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-      level: 4 // 지도의 확대 레벨
+      center: new kakao.maps.LatLng(37.56245294682136, 126.98387128642294), // 지도의 중심좌표
+      level: 2 // 지도의 확대 레벨
     }
     let map = new kakao.maps.Map(mapContainer, mapOption);
     this.setState({
       map
     })
+    window.map = map
     let zoomControl = new kakao.maps.ZoomControl();
     map.addControl(zoomControl, kakao.maps.ControlPosition.BOTTOMRIGHT);
   }
 
   click() {
+    this.state.markList.reduce((acc, val) => {
+      val.setMap(null);
+    }, []);
+    this.setState({
+      markList: []
+    });
     let place = new kakao.maps.services.Places(this.state.map);
     let searchresult = [];
     (async () => {
@@ -38,6 +45,8 @@ class Map extends React.Component {
         place.keywordSearch('노래방', (result, status) => {
           if (status === kakao.maps.services.Status.OK) {
             res(result);
+          } else {
+            res([])
           }
         },{
           useMapCenter: true,
@@ -48,6 +57,8 @@ class Map extends React.Component {
         place.keywordSearch('pc방', (result, status) => {
           if (status === kakao.maps.services.Status.OK) {
             res(result);
+          } else {
+            res([])
           }
         },{
           useMapCenter: true,

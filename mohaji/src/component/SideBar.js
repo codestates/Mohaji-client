@@ -16,14 +16,24 @@ class SideBar extends React.Component {
     let height = window.innerHeight;
     return (
       <div>
-        <div id='side-bar' style={{height}}>
-          <Switch>
-            <Route path='/spot-list' component={SpotList} />
-            <Route path="/my-page" component={MyPage} />
-            <Route path="/sign-in" component={SignIn} />
+        <Switch>
+          <Route path='/spot-list' >
+            <div id='side-bar' style={{ height }}>
+              <SpotList />
+            </div>
+          </Route>
+          <Route path="/my-page" >
+            <div id='side-bar' style={{ height }}>
+              <MyPage />
+            </div>
+          </Route>
+          <Route path="/sign-in" >
+            <div id='side-bar' style={{ height }}>
+              <SignIn />
+            </div>
+          </Route>
 
-          </Switch>
-        </div>
+        </Switch>
         <Switch>
           <Route path='/spot-list/info'>
             <div id='side-extend' style={{ height }}>

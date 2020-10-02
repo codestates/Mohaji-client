@@ -10,11 +10,8 @@
     border: solid 1px #ff0000;
 }
 
-.spot-name {
-    float: left;
-}
-
-.spot-time {
+.spot-adress {
+    font-size: 0.5em;
     text-align: right;
 }
 

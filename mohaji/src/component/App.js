@@ -1,16 +1,23 @@
-import React from 'react';
+import Axios from 'axios';
+import React, { useEffect } from 'react';
 import './App.css';
+import Map from './Map';
 import NavBar from './NavBar';
 import SideBar from './SideBar';
 
 function App() {
+  useEffect(()=>{
+    Axios.get('http://localhost:4000/', {
+      withCredentials: true
+    })
+  },[])
   return (
     <div>
       <NavBar />
       <SideBar />
+      <Map />
     </div>
   );
 }
-//소통이 이루어져야 한다. app이 새로고침했을때 state 값 유지 
-//componentdidmount
+
 export default App;

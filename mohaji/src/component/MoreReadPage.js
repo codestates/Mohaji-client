@@ -29,6 +29,7 @@ class MoreReadPage extends Component {
                 <Link to='/spot-list/info'>
                     <button>돌아가기(아이콘)</button>
                 </Link>
+                <div style={{textAlign:'center', fontSize:'0.8em'}}>댓글 상세보기</div>
                 <CommentList />
             </div>
         )

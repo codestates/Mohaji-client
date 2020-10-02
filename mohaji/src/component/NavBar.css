@@ -1,12 +1,16 @@
 .navbar{
-    padding: 5px;
     float: left;   
-    width: 6%;
-    height: 1000px;
+    width: 5%;
     background: #d9d9d9;
 }
 
-.button-login{
-    float: right;
-    position: static;
+.nav-item {
+    border-bottom: solid 1px #747474;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+#nav-blank {
+    height: 80%;
 }
