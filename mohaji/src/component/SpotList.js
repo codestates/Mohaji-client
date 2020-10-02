@@ -8,16 +8,6 @@ class SpotList extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.dispatch(setSpotList(
-      Array(10).fill('').map((val,i) => ({
-        spotId:i+1,
-        spotName: `장소${i+1}`,
-        spotAdress: `서울 어딘가`
-      }))
-    ));
-  }
-
   render() {
     return (
       <div>

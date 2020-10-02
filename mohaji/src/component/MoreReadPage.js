@@ -23,8 +23,9 @@ class MoreReadPage extends Component {
 
 
     render() {
+        let height = window.innerHeight;
         return (
-            <div className="MoreReadPage">
+            <div className="MoreReadPage" style={{height, backgroundColor:'#ffffff'}}>
                 <Link to='/spot-list/info'>
                     <button>돌아가기(아이콘)</button>
                 </Link>

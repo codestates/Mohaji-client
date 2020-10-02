@@ -27,8 +27,9 @@ const SpotInfo = (props) => {
     props.dispatch(setCurrSpot(null));
   }
   let { spotName, spotAdress } = props.currSpot || {}
+  let height = window.innerHeight;
   return (
-    <div>
+    <div style={{backgroundColor:'#ffffff', height}}>
       <Link to='/spot-list'>
         <button
           style={{ float: 'right' }}
