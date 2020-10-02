@@ -1,12 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { compose, createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import { BrowserRouter } from 'react-router-dom'
+
+
 import './index.css';
-import App from './App';
+import App from './component/App';
+import reducers from "./reducers";
+import NavBar from './component/NavBar';
+import SideBar from './component/SideBar';
+
+
+const composeEnhancers = compose;
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+      <NavBar />
+      <SideBar />
+    </BrowserRouter>
+  </Provider>
+  ,
   document.getElementById('root')
 );
 
