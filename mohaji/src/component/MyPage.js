@@ -23,7 +23,7 @@ class MyPage extends Component {
                         <div className='mypage-nickname'>닉네임 : {this.props.nickname}</div>
                         <div className='mypage-email'>이메일: {this.props.email}</div>
                         <div className='MYPage-tag'>선호하는테그: {this.props.tag}</div>
-                    </div> : <Link to='sign-in'><div>로그인이 필요합니다.</div></Link>}
+                    </div> : <Link to='/sign-in'><div>로그인이 필요합니다.</div></Link>}
 
                 </div>
             </div>
