@@ -6,11 +6,8 @@ import SideBar from './SideBar';
 function App() {
   return (
     <div>
-<<<<<<< HEAD
-=======
       <NavBar />
       <SideBar />
->>>>>>> 8d4e14384e78a3a73aa6b687cacead4055875422
     </div>
   );
 }
