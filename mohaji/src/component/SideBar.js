@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import MoreReadPage from './MoreReadPage';
+import MyPage from './MyPage';
 import './SideBar.css';
 import SignIn from './SignIn';
 import SpotInfo from './SpotInfo';
@@ -17,6 +18,7 @@ class SideBar extends React.Component {
         <div id='side-bar'>
           <Switch>
             <Route path='/spot-list' component={SpotList} />
+            <Route path="/my-page" component={MyPage} />
             <Route path="/sign-in" component={SignIn} />
 
           </Switch>

@@ -9,8 +9,8 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css';
 import App from './component/App';
 import reducers from "./reducers";
-import SignIn from './component/SignIn';
-import SignUp from './component/SignUp';
+import NavBar from './component/NavBar';
+import SideBar from './component/SideBar';
 
 
 const composeEnhancers = compose;
@@ -21,8 +21,8 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <App />
-      <SignIn />
-      <SignUp />
+      <NavBar />
+      <SideBar />
     </BrowserRouter>
   </Provider>
   ,

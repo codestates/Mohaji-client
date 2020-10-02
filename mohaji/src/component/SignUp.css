@@ -4,12 +4,8 @@
   }
 
 .signup-input-box{
-    border: 100px solid gray;
-    margin: 10px;
-    color: gray;
-    padding: 10px; 
-    position:fixed;
-      background: white;
+    
+      background: blue;
       width: 80%;
       height: auto;
       top:50%;

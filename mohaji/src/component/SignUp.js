@@ -12,6 +12,7 @@ export default class SignUp extends Component {
             nickname: "",
             profile: "",
             tag: ""
+
         }
         this.handleInputValue = this.handleInputValue.bind(this);
 

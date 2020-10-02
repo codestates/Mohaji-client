@@ -17,7 +17,7 @@ class MyPage extends Component {
         return (
             <div className='mypage'>
                 <div style={{ display: 'inline-block', width: '100%' }}>
-                    {isLogin ? <div className='mypage-info-1'>
+                    {this.props.isLogin ? <div className='mypage-info-1'>
                         <div className='mypage-nickname'>닉네임 : {this.props.nickname}</div>
                         <div className='mypage-email'>이메일: {this.props.email}</div>
                         <div className='MYPage-tag'>선호하는테그: {this.props.tag}</div>
@@ -32,7 +32,6 @@ class MyPage extends Component {
 }
 
 const mapStateToProps = state => ({
-
     isLogin: state.signinReducer.isLogin
 })
 
