@@ -19,24 +19,28 @@ export default class NavBar extends Component {
 
   render() {
     return (
-      <div className="navbar">
-        <div className="navbar=menu">
+      <div className="navbar"
+        style={{height:window.innerHeight}}
+      >
 
           <Link to='/spot-list'>
-            <button className='button-list'>리스트</button>
+            <div id='nav-list' className='nav-item'>
+              리스트
+            </div>
           </Link>
 
           <Link to='/my-page'>
-            <button className='button-mypage'>마이페이지</button>
+            <div id='nav-my-page' className='nav-item'>
+              마이페이지
+            </div>
           </Link>
-
+          <div id='nav-blank'/>
           <Link to='/sign-in'>
-            <button className='button-login'>로그인</button>
+            <div id='nav-sign-in' className='nav-item'>
+              로그인
+            </div>
           </Link>
 
-
-
-        </div>
       </div>
     )
   }

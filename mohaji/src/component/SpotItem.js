@@ -21,8 +21,8 @@ class SpotItem extends React.Component {
             style={style}
           >
             <div style={{ display: 'block', width: '100%' }}>
-              <div className='spot-name'>{this.props.spot.spotName}</div>
-              <div className='spot-time'>영업시간</div>
+              <div className='spot-name'>{this.props.spot.place_name}</div>
+              <div className='spot-adress'>{this.props.spot.address_name}</div>
             </div>
             <div>{this.props.spot.spotAdress}</div>
           </div>
