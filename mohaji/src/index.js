@@ -1,19 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-
 import { compose, createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-
-
 import { BrowserRouter } from 'react-router-dom'
 
 
 import './index.css';
 import App from './component/App';
 import reducers from "./reducers";
-import MyPage from './component/MyPage';
+import SignIn from './component/SignIn';
+import SignUp from './component/SignUp';
 
 
 const composeEnhancers = compose;
@@ -24,7 +21,8 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <App />
-      <MyPage />
+      <SignIn />
+      <SignUp />
     </BrowserRouter>
   </Provider>
   ,
