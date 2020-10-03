@@ -167,7 +167,7 @@ class SignIn extends Component {
 
 
                     <GoogleLogin
-                        clientId={"1014688682343-0sim8m8uplrmdfnt5msl0b9ceilfta7g.apps.googleusercontent.com"}
+                        clientId={"클라이언트 id를 기입하세요"}
                         buttonText="google"
                         onSuccess={this.responseGoogle}
 
