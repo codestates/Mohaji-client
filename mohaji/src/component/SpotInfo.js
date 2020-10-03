@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { setCommentList, setCurrSpot } from '../actions';
 import CommentList from './CommentList';
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
 
 const SpotInfo = (props) => {
   
@@ -16,17 +17,20 @@ const SpotInfo = (props) => {
   // }
 
   useEffect(() => {
-    props.dispatch(setCommentList(Array(10).fill('').map(() => ({
-      nickname: 'Pig-Cola',
-      create_at: new Date().toLocaleString(),
-      msg: '안녕하세요'
-    }))));
-  },[])
+    (async () => {
+      if (props.currSpot) {
+        let { data: result } = await Axios.get(`http://localhost:4000/spot/comment/${props.currSpot.id}`, {
+          withCredentials:true
+        }).catch(err=>err.response)
+        props.dispatch(setCommentList(result))
+      }
+    })()
+  },[props.currSpot])
   
   let handleExitClick = () => {
     props.dispatch(setCurrSpot(null));
   }
-  let { spotName, spotAdress } = props.currSpot || {}
+  let { place_name, address_name } = props.currSpot || {}
   return (
     <div>
       <Link to='/spot-list'>
@@ -39,13 +43,10 @@ const SpotInfo = (props) => {
       </Link>
       <br />
       <div className='spot-info'>
-        <div>업체사진</div>
-        <div className='spot-name'>{spotName || '업체이름'}</div>
-        <div className='spot-time'>영업 시간</div>
-        <div>{spotAdress || '주소'}</div>
-        <div>상세정보</div>
+        <div className='spot-name'>{place_name || '업체이름'}</div>
+        <div className='spot-adress'>{address_name || '주소'}</div>
       </div>
-      <CommentList />
+        <CommentList />
     </div>
   );
 }

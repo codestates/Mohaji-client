@@ -6,34 +6,55 @@ import './SideBar.css';
 import SignIn from './SignIn';
 import SpotInfo from './SpotInfo';
 import SpotList from './SpotList';
+import { connect } from 'react-redux';
 
 class SideBar extends React.Component {
   constructor(props) {
     super(props);
   }
 
+
   render() {
+    let height = window.innerHeight;
     return (
       <div>
-        <div id='side-bar'>
-          <Switch>
-            <Route path='/spot-list' component={SpotList} />
-            <Route path="/my-page" component={MyPage} />
-            <Route path="/sign-in" component={SignIn} />
 
-          </Switch>
-        </div>
-        <div id='side-extend'>
-          <Switch>
-            <Route path='/spot-list/info' component={SpotInfo} />
-            <Route path='/spot-list/more-read' component={MoreReadPage} />
+        <Switch>
+          <Route path='/spot-list' >
+            <div id='side-bar' style={{ height }}>
+              <SpotList />
+            </div>
+          </Route>
+          <Route path="/my-page" >
+            <div id='side-bar' style={{ height }}>
+              <MyPage />
+            </div>
+          </Route>
+          <Route path="/sign-in" >
+            <div id='side-bar' style={{ height }}>
+              <SignIn />
+            </div>
+          </Route>
 
-
-          </Switch>
-        </div>
+        </Switch>
+        <Switch>
+          <Route path='/spot-list/info'>
+            <div id='side-extend' style={{ height }}>
+              <SpotInfo />
+            </div>
+          </Route>
+          <Route path='/spot-list/more-read' >
+            <div id='side-extend' style={{ height }}>
+              <MoreReadPage />
+            </div>
+          </Route>
+        </Switch>
       </div>
     );
   }
 }
 
-export default SideBar;
+const mapStateToProps = state => ({
+})
+
+export default connect(mapStateToProps)(SideBar)

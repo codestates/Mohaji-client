@@ -1,4 +1,16 @@
 .navbar{
-    float: left;
-    width: 10%
+    float: left;   
+    width: 5%;
+    background: #d9d9d9;
+}
+
+.nav-item {
+    border-bottom: solid 1px #747474;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+#nav-blank {
+    height: 70%;
 }

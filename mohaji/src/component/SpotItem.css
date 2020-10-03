@@ -1,5 +1,5 @@
 .spot-item {
-    border: solid 1px #000000;
+    border: solid 1px #ff9f40;
     border-radius: 4px;
     margin: 1px;
     padding: 5px;
@@ -10,11 +10,8 @@
     border: solid 1px #ff0000;
 }
 
-.spot-name {
-    float: left;
-}
-
-.spot-time {
+.spot-adress {
+    font-size: 0.5em;
     text-align: right;
 }
 
@@ -22,3 +19,4 @@ a {
     text-decoration: none;
     color: #000000;
 }
+
