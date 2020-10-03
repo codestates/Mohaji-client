@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 
 const SpotInfo = (props) => {
-  
+
   // componentDidMount() { // 해당 구문은 comment를 불러오는 API를 호출 하여야 함.
   //   this.props.dispatch(setCommentList(Array(5).fill('').map(() => ({
   //     nickname: 'Pig-Cola',
@@ -20,13 +20,13 @@ const SpotInfo = (props) => {
     (async () => {
       if (props.currSpot) {
         let { data: result } = await Axios.get(`http://localhost:4000/spot/comment/${props.currSpot.id}`, {
-          withCredentials:true
-        }).catch(err=>err.response)
+          withCredentials: true
+        }).catch(err => err.response)
         props.dispatch(setCommentList(result))
       }
     })()
-  },[props.currSpot])
-  
+  }, [props.currSpot])
+
   let handleExitClick = () => {
     props.dispatch(setCurrSpot(null));
   }
@@ -46,7 +46,7 @@ const SpotInfo = (props) => {
         <div className='spot-name'>{place_name || '업체이름'}</div>
         <div className='spot-adress'>{address_name || '주소'}</div>
       </div>
-        <CommentList />
+      <CommentList />
     </div>
   );
 }
