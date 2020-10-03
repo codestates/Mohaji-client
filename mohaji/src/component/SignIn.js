@@ -8,6 +8,7 @@ import {
 import axios from 'axios';
 import { GoogleLogin } from 'react-google-login'
 import SignUp from './SignUp';
+import { withRouter } from 'react-router-dom';
 
 class SignIn extends Component {
     constructor(props) {
@@ -91,32 +92,32 @@ class SignIn extends Component {
     // };
 
     async handleLoginClick() {
-        console.log(this.state);
-        let result = await axios({
-            method: 'post',
-            data: this.state,
-            withCredentials: true,
-            url: 'http://localhost:4000/user/signin'
-        })
-            .catch(err => (err.response));
-        if (result.status === 200) {
-            this.props.dispatch(setLogin(true))
-        } else if (this.state.password === "") {
-            alert('input password')
+        if (this.state.password === "") {
+            alert('input password');
         } else if (this.state.email === "") {
-            alert('input email')
-        } else if (result.status === 404) {
-            alert('잘못된 아이디 혹은 비밀번호입니다')
-        } else if (result.status === 500) {
-            alert('unknown error')
+            alert('input email');
+        } else {
+            let result = await axios({
+                method: 'post',
+                data: this.state,
+                withCredentials: true,
+                url: 'http://localhost:4000/user/signin'
+            })
+                .catch(err => (err.response));
+            if (result.status === 200) {
+                this.props.dispatch(setLogin(true));
+                this.props.history.push('/');
+            } else if (result.status === 404) {
+                alert('잘못된 아이디 혹은 비밀번호입니다')
+            } else if (result.status === 500) {
+                alert('unknown error')
+            }
         }
     }
 
 
 
 
-    // 200, 404 
-    //signup 라우터 처리해야함 
     render() {
         return (
             <div className='signin'>
@@ -175,7 +176,7 @@ class SignIn extends Component {
 
 
                     <GoogleLogin
-                        clientId={"905288929306-admpkans4d2qsc5d5lq8amo4ag6n2fke.apps.googleusercontent.com"}
+                        clientId={"320452447938-pfoe0mkhd8777imaagpkakfo8ttird0k.apps.googleusercontent.com"}
                         buttonText="google"
                         onSuccess={this.responseGoogle}
 
@@ -197,7 +198,7 @@ const mapStateToProps = state => ({
     ...state.showReducer
 })
 
-export default connect(mapStateToProps)(SignIn)
+export default withRouter(connect(mapStateToProps)(SignIn));
 //
 //state islogin=false, 로그인 여부 변경 
 //login reducer 
