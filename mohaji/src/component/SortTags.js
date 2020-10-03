@@ -8,6 +8,10 @@ import axios from 'axios';
 // 예: <SortTags default={false} selected={false}/>
 // user가 선택한 tag는 props로 usertags에 배열로 전달한다.
 // (userinfo API를 호출할 경우 tag부분이 이미 배열로 존재한다.)
+// usertags가 길이가1이상인 배열로 전달되면 default설정은 무시된다.
+
+// output에 함수가 전달되면 해당 함수에 현재 Tag의 선택된 상태들을 object로 전달한다.
+
 class SortTags extends React.Component {
   constructor(props) {
     super(props);
@@ -19,6 +23,7 @@ class SortTags extends React.Component {
   }
 
   componentDidMount() {
+    let usertags = this.props.usertags || [];
     (async () => {
       let result = await axios({
         method: 'get',
@@ -28,17 +33,26 @@ class SortTags extends React.Component {
       this.setState({
         tag: result.data
       })
+
       for (let i of result.data) {
         this.setState({
-          select: {...this.state.select, [i.id]: this.props.default}
+          select: {
+            ...this.state.select,
+            [i.id]: usertags.length > 0 ?
+            false :
+            this.props.default
+          }
         });
       }
-      if (this.props.usertags) {
-        for (let i of this.props.usertags) {
-          this.setState({
-            select: {...this.state.select, [i]: true}
-          });
-        }
+
+      for (let i of usertags) {
+        this.setState({
+          select: { ...this.state.select, [i]: true }
+        });
+      }
+
+      if (this.props.output) {
+        this.props.output({...this.state.select})
       }
     })()
   }
@@ -48,6 +62,11 @@ class SortTags extends React.Component {
       this.setState({
         select: {...this.state.select, [id]: !this.state.select[id]}
       });
+      if (this.props.output) {
+        this.props.output({
+          ...this.state.select, [id]: !this.state.select[id]
+        });
+      }
     }
   }
 

@@ -12,7 +12,6 @@ class NavBar extends Component {
   }
 
 
-  //  {setList ? : 
   render() {
     return (
       <div className="navbar"
@@ -22,7 +21,7 @@ class NavBar extends Component {
           <Link to='/'>
             <div id='nav-list' className='nav-item'>
               리스트
-          </div>
+            </div>
           </Link> :
           <Link to='/spot-list'>
             <div id='nav-list' className='nav-item'>
@@ -34,23 +33,21 @@ class NavBar extends Component {
           <Link to='/'>
             <div id='nav-my-page' className='nav-item'>
               마이페이지
-          </div>
+            </div>
           </Link> :
           <Link to='/my-page'>
             <div id='nav-my-page' className='nav-item'>
               마이페이지
-       </div>
+            </div>
           </Link>}
 
-        <div id='nav-blank' />
-
         {this.props.component === 'SignIn' ?
-          <Link to='/'>
-            <div id='nav-sign-in' className='nav-item'>
+          <Link to='/' id='nav-sign-in'>
+            <div className='nav-item'>
               로그인
-           </div>
+            </div>
           </Link> :
-          <Link to='/sign-in'>
+          <Link to='/sign-in' id='nav-sign-in'>
             <div id='nav-sign-in' className='nav-item'>
               로그인
             </div>

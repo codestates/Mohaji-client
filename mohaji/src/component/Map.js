@@ -3,8 +3,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { setSpotList } from "../actions";
-import './Map.css';
+import FilterOfTags from "./FilterOfTags";
 import ReSearch from "./ReSearch";
+import Axios from "axios";
+import './Map.css';
 
 class Map extends React.Component {
   constructor(props) {
@@ -41,30 +43,35 @@ class Map extends React.Component {
     let place = new kakao.maps.services.Places(this.state.map);
     let searchresult = [];
     (async () => {
-      searchresult.push(...await new Promise((res, rej) => {
-        place.keywordSearch('노래방', (result, status) => {
-          if (status === kakao.maps.services.Status.OK) {
-            res(result);
-          } else {
-            res([])
-          }
-        },{
-          useMapCenter: true,
-          useMapBounds: true
-        })
-      }))
-      searchresult.push(...await new Promise((res, rej) => {
-        place.keywordSearch('pc방', (result, status) => {
-          if (status === kakao.maps.services.Status.OK) {
-            res(result);
-          } else {
-            res([])
-          }
-        },{
-          useMapCenter: true,
-          useMapBounds: true
-        })
-      }))
+      let tag = await Axios({
+        method: 'get',
+        url: 'http://localhost:4000/spot/taginfo',
+        withCredentials: true
+      });
+      let searchTag = tag.data.reduce((acc, val)=>{
+        if (Object.keys(this.props.filter_selected).length === 0) {
+          acc.push(val.tag_name);
+          return acc;
+        }
+        if (this.props.filter_selected[val.id]) {
+          acc.push(val.tag_name);
+        }
+        return acc;
+      }, [])
+      for (let i of searchTag) { // i가 현재 search하는 tag이다.
+        searchresult.push(...await new Promise((res, rej) => {
+          place.keywordSearch(i, (result, status) => {
+            if (status === kakao.maps.services.Status.OK) {
+              res(result);
+            } else {
+              res([])
+            }
+          },{
+            useMapCenter: true,
+            useMapBounds: true
+          })
+        }))
+      }
       let markList = searchresult.reduce((acc, val, i) => {
         let position = new kakao.maps.LatLng(val.y, val.x);
         let title = val.place_name;
@@ -89,6 +96,7 @@ class Map extends React.Component {
     return (
       <div>
         <ReSearch click={this.click}/>
+        <FilterOfTags />
         <div id="map" style={{height}}></div>
       </div>
     );
@@ -96,7 +104,7 @@ class Map extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  
+  ...state.filterTagReducer
 })
 
 export default connect(mapStateToProps)(Map);
