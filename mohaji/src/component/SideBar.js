@@ -7,6 +7,7 @@ import SignIn from './SignIn';
 import SpotInfo from './SpotInfo';
 import SpotList from './SpotList';
 import { connect } from 'react-redux';
+import CommentCreate from './CommentCreate';
 
 class SideBar extends React.Component {
   constructor(props) {

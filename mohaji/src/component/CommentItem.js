@@ -13,7 +13,7 @@ class CommentItem extends React.Component {
           <div className='nickname'>{this.props.nickname}</div>
           <div className='create_at'>{this.props.create_at}</div>
         </div>
-        <div className='msg'>{this.props.msg}</div>
+        <div className='msg'>{this.props.message}</div>
       </div>
     );
   }

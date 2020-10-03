@@ -24,7 +24,7 @@ class CommentList extends React.Component {
               acc.push(<CommentItem
                 nickname={val.nickname}
                 create_at={val.create_at}
-                msg={val.msg}
+                message={val.message}
                 key={i}
               />)
             }
@@ -32,7 +32,7 @@ class CommentList extends React.Component {
             acc.push(<CommentItem
               nickname={val.nickname}
               create_at={val.create_at}
-              msg={val.msg}
+              message={val.message}
               key={i}
             />)
           }
@@ -43,7 +43,7 @@ class CommentList extends React.Component {
             <div id='more'>댓글 상세보기(댓글쓰기)</div>
           </Link> :
           undefined
-          }
+        }
       </div>
     );
   }
