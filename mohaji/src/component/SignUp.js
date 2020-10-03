@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { setShowFalse } from '../actions';
 import './SignUp.css';
+import SortTags from './SortTags';
+import axios from 'axios'
 
 class SignUp extends Component {
   constructor(props) {
@@ -12,8 +14,6 @@ class SignUp extends Component {
       email: "",
       password: "",
       nickname: "",
-      profile: "",
-      tag: ""
 
     }
     this.handleInputValue = this.handleInputValue.bind(this);
@@ -45,23 +45,23 @@ class SignUp extends Component {
             {isSocialLogin ?
               ("") : (
                 <div>
-                  <div><span style={{
+                  <span style={{
                     paddingRight: "13px"
                   }}>이메일</span>
-                    <input
-                      style={{
-                        width: "400px",
-                        height: "30px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                      }}
-                      type="email"
-                      placeholder="이메일을 입력 해주세요"
-                    // onChange={this.handleInputValue("email")}
-                    ></input>
-                  </div>
-                  <div><span>비밀번호</span>
-                    <input
+                  <input
+                    style={{
+                      width: "400px",
+                      height: "30px",
+                      margin: "5px",
+                      borderRadius: "5px",
+                    }}
+                    type="email"
+                    placeholder="이메일을 입력 해주세요"
+                    onChange={this.handleInputValue("email")}
+                  ></input>
+
+                  <div>비밀번호
+                                  <input
                       style={{
                         width: "400px",
                         height: "30px",
@@ -70,13 +70,14 @@ class SignUp extends Component {
                       }}
                       type="password"
                       placeholder="비밀번호를 입력 해주세요"
-                    // onChange={this.handleInputValue("password")}
+                      onChange={this.handleInputValue("password")}
                     ></input>
                   </div>
                 </div>)}
-            <div><span style={{
-              paddingRight: "14px"
-            }}>닉네임</span>
+            <div>
+              <span style={{
+                paddingRight: "13px"
+              }}>닉네임</span>
               <input
                 style={{
                   width: "400px",
@@ -86,8 +87,14 @@ class SignUp extends Component {
                 }}
                 type="nickname"
                 placeholder="닉네임을 입력 해주세요"
-              // onChange={this.handleInputValue("nickname")}
+                onChange={this.handleInputValue("nickname")}
               ></input>
+            </div>
+            <div>
+              <span style={{
+                paddingRight: "445px"
+              }}>테그</span>
+              <SortTags default={true} selected={false} />
             </div>
             <div><span style={{
               paddingRight: "28px"
@@ -109,9 +116,9 @@ class SignUp extends Component {
           <button id='signup-button' >회원가입</button>
 
         </div>
-
+        <button id='close' onClick={this.hideModal}>닫기</button>
+        <button id='signup-button' onClick={'fix this'} >회원가입</button>
       </div>
-
     )
   }
 }
