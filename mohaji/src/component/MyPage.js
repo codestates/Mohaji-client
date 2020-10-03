@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './MyPage.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { setNavMyPage, setNavNull } from '../actions';
 
 
 class MyPage extends Component {
@@ -10,7 +11,13 @@ class MyPage extends Component {
 
     }
 
+    componentDidMount() {
+        this.props.dispatch(setNavMyPage());
+    }
 
+    componentWillUnmount() {
+        this.props.dispatch(setNavNull());
+    }
 
 
     render() {
@@ -32,7 +39,8 @@ class MyPage extends Component {
 }
 
 const mapStateToProps = state => ({
-    isLogin: state.signinReducer.isLogin
+    isLogin: state.signinReducer.isLogin,
+    ...state.navReducer
 })
 
 export default connect(mapStateToProps)(MyPage);

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Signin.css';
-import { setLogin } from '../actions'
+import {
+    setLogin, setNavSignIn,
+    setShowTrue, setNavNull
+} from '../actions'
 import axios from 'axios'
 import { GoogleLogin } from 'react-google-login'
 import SignUp from './SignUp';
-import { Redirect, browserHistory } from 'react-router-dom';
 
 class SignIn extends Component {
     constructor(props) {
@@ -13,27 +15,35 @@ class SignIn extends Component {
 
         this.state = {
             email: "",
-            password: "",
-            show: false,
-            redirect: false
-        }
+            password: ""
+        };
+        ([
+            this.handleInputValue,
+            this.handleLoginClick,
+            this.showModal
+        ] = [
+                this.handleInputValue.bind(this),
+                this.handleLoginClick.bind(this),
+                this.showModal.bind(this)
+            ])
 
-        this.handleInputValue = this.handleInputValue.bind(this);
-        this.handleLoginClick = this.handleLoginClick.bind(this);
     }
 
+    componentDidMount() {
+        this.props.dispatch(setNavSignIn());
+    }
 
+    componentWillUnmount() {
+        this.props.dispatch(setNavNull());
+    }
+
+    showModal() {
+        this.props.dispatch(setShowTrue());
+    }
 
     // componentDidMount() {
     //     this.googleSDK();
     // }
-    showModal = () => {
-        this.setState({ show: true });
-    };
-
-    hideModal = () => {
-        this.setState({ show: false });
-    };
 
     responseGoogle = async (googleUser) => {
         console.log(googleUser);
@@ -44,25 +54,25 @@ class SignIn extends Component {
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
         console.log(`id_token: ${id_token}`);
-        // let result = await axios({
-        //     method: 'post',
-        //     url: 'http://localhost:4000/user/social-signin',
-        //     data: {
-        //         token: id_token
-        //     },
-        //     withCredentials: true
-        // }).catch(err => (err.response))
-        // if (result.status === 200) {
-        //     if (result.data.found) {
-        //         alert('')
-        //     } else {
-        //         window.location.href = '/signup'
-        //         //link window location href 수정하면 됨, state 값이 유지되어야함.
-        //         //redux 써야함 state값이 유지되는 
-        //     }
-        // } else if (result.status === 400) {
-        //     alert('올바르지 않은 접근입니다.')
-        // }
+        let result = await axios({
+            method: 'post',
+            url: 'http://localhost:4000/user/social-signin',
+            data: {
+                token: id_token
+            },
+            withCredentials: true
+        }).catch(err => (err.response))
+
+        if (result.status === 200) {
+            if (result.data.found) {
+                alert('환영합니다.')
+            } else {
+                this.showModal()
+                //redux 써야함 state값이 유지되는 
+            }
+        } else if (result.status === 400) {
+            alert('올바르지 않은 접근입니다.')
+        }
     }
 
     responseFail = (err) => {
@@ -148,7 +158,7 @@ class SignIn extends Component {
                 </div>
 
                 <br />
-                <SignUp show={this.state.show} handleClose={this.hideModal}></SignUp>
+                {this.props.show ? <SignUp /> : undefined}
                 <button className="signin-signup-button" type='button' onClick={this.showModal}>회원가입</button>
 
                 <div className='google'>
@@ -157,7 +167,7 @@ class SignIn extends Component {
 
 
                     <GoogleLogin
-                        clientId={"1014688682343-j2r0ck0oc2qvb2l32dnp1apnbjd0kfbq.apps.googleusercontent.com"}
+                        clientId={"1014688682343-0sim8m8uplrmdfnt5msl0b9ceilfta7g.apps.googleusercontent.com"}
                         buttonText="google"
                         onSuccess={this.responseGoogle}
 
@@ -175,7 +185,8 @@ class SignIn extends Component {
 
 
 const mapStateToProps = state => ({
-    ...state.signinReducer
+    ...state.signinReducer,
+    ...state.showReducer
 })
 
 export default connect(mapStateToProps)(SignIn)
