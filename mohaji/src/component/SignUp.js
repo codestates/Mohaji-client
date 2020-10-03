@@ -45,8 +45,10 @@ class SignUp extends Component {
             {isSocialLogin ?
               ("") : (
                 <div>
-                  <div >이메일
-                                  <input
+                  <div><span style={{
+                    paddingRight: "13px"
+                  }}>이메일</span>
+                    <input
                       style={{
                         width: "400px",
                         height: "30px",
@@ -58,8 +60,8 @@ class SignUp extends Component {
                     // onChange={this.handleInputValue("email")}
                     ></input>
                   </div>
-                  <div>비밀번호
-                                  <input
+                  <div><span>비밀번호</span>
+                    <input
                       style={{
                         width: "400px",
                         height: "30px",
@@ -72,8 +74,10 @@ class SignUp extends Component {
                     ></input>
                   </div>
                 </div>)}
-            <div>닉네임
-                        <input
+            <div><span style={{
+              paddingRight: "14px"
+            }}>닉네임</span>
+              <input
                 style={{
                   width: "400px",
                   height: "30px",
@@ -85,8 +89,10 @@ class SignUp extends Component {
               // onChange={this.handleInputValue("nickname")}
               ></input>
             </div>
-            <div>테그
-                        <input
+            <div><span style={{
+              paddingRight: "28px"
+            }}>테그</span>
+              <input
                 style={{
                   width: "400px",
                   height: "30px",
