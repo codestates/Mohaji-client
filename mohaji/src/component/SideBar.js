@@ -6,16 +6,19 @@ import './SideBar.css';
 import SignIn from './SignIn';
 import SpotInfo from './SpotInfo';
 import SpotList from './SpotList';
+import { connect } from 'react-redux';
 
 class SideBar extends React.Component {
   constructor(props) {
     super(props);
   }
 
+
   render() {
     let height = window.innerHeight;
     return (
       <div>
+
         <Switch>
           <Route path='/spot-list' >
             <div id='side-bar' style={{ height }}>
@@ -51,4 +54,7 @@ class SideBar extends React.Component {
   }
 }
 
-export default SideBar;
+const mapStateToProps = state => ({
+})
+
+export default connect(mapStateToProps)(SideBar)

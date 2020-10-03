@@ -4,7 +4,8 @@ export const SET_COMMENTLIST = 'SET_COMMENTLIST';
 export const LOAD_COMMENTLIST = 'LOAD_COMMENTLIST'
 export const SET_ISMOREREAD = 'SET_ISMOREREAD';
 export const SET_LOGIN = 'SET_LOGIN';
-
+export const SET_SHOW = 'SET_SHOW';
+export const SET_NAV = 'SET_NAV'
 
 export const setCommentList = commentList => ({
   type: SET_COMMENTLIST,
@@ -34,4 +35,34 @@ export const setIsMoreRead = bool => ({
 export const setLogin = bool => ({
   type: SET_LOGIN,
   bool
+})
+
+export const setShowTrue = () => ({
+  type: SET_SHOW,
+  state: true
+})
+
+export const setShowFalse = () => ({
+  type: SET_SHOW,
+  state: false
+})
+
+export const setNavSpotList = () => ({
+  type: SET_NAV,
+  component: 'SpotList'
+})
+
+export const setNavMyPage = () => ({
+  type: SET_NAV,
+  component: 'MyPage'
+})
+
+export const setNavSignIn = () => ({
+  type: SET_NAV,
+  component: 'SignIn'
+})
+
+export const setNavNull = () => ({
+  type: SET_NAV,
+  component: 'Null'
 })

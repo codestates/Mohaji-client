@@ -1,11 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setSpotList } from '../actions';
+import { setNavNull, setNavSpotList } from '../actions';
 import SpotItem from './SpotItem';
 
 class SpotList extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    this.props.dispatch(setNavSpotList());
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(setNavNull());
   }
 
   render() {
@@ -21,7 +29,8 @@ class SpotList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  spotList: state.spotReducer.spotList
+  spotList: state.spotReducer.spotList,
+  ...state.navReducer
 });
 
 export default connect(mapStateToProps)(SpotList);
