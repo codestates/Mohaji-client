@@ -5,7 +5,7 @@ import {
     setLogin, setNavSignIn,
     setShowTrue, setNavNull
 } from '../actions'
-import axios from 'axios'
+import axios from 'axios';
 import { GoogleLogin } from 'react-google-login'
 import SignUp from './SignUp';
 
@@ -91,7 +91,13 @@ class SignIn extends Component {
     // };
 
     async handleLoginClick() {
-        let result = await axios.post(`http://localhost:4000/user/signin`, this.state)
+        console.log(this.state);
+        let result = await axios({
+            method: 'post',
+            data: this.state,
+            withCredentials: true,
+            url: 'http://localhost:4000/user/signin'
+        })
             .catch(err => (err.response));
         if (result.status === 200) {
             this.props.dispatch(setLogin(true))
@@ -167,7 +173,7 @@ class SignIn extends Component {
 
 
                     <GoogleLogin
-                        clientId={"1014688682343-0sim8m8uplrmdfnt5msl0b9ceilfta7g.apps.googleusercontent.com"}
+                        clientId={"905288929306-admpkans4d2qsc5d5lq8amo4ag6n2fke.apps.googleusercontent.com"}
                         buttonText="google"
                         onSuccess={this.responseGoogle}
 

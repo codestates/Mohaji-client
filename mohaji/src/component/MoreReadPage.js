@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setIsMoreRead } from '../actions'
 import CommentList from './CommentList'
+import CommentCreate from './CommentCreate'
 
 
 class MoreReadPage extends Component {
@@ -25,11 +26,12 @@ class MoreReadPage extends Component {
     render() {
         let height = window.innerHeight;
         return (
-            <div className="MoreReadPage" style={{height, backgroundColor:'#ffffff'}}>
+            <div className="MoreReadPage" style={{ height, backgroundColor: '#ffffff' }}>
                 <Link to='/spot-list/info'>
-                    <button>돌아가기(아이콘)</button>
+                    <button>돌아가기</button>
                 </Link>
-                <div style={{textAlign:'center', fontSize:'0.8em'}}>댓글 상세보기</div>
+                <CommentCreate />
+                <div style={{ textAlign: 'center', fontSize: '0.8em' }}></div>
                 <CommentList />
             </div>
         )

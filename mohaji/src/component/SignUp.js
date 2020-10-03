@@ -18,26 +18,11 @@ class SignUp extends Component {
     }
     this.handleInputValue = this.handleInputValue.bind(this);
     this.hideModal = this.hideModal.bind(this);
-    this.handleInput = this.handleInput.bind(this)
+
   }
 
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
-  };
-
-  handleInput = async () => {
-    const { email, password, nickname } = this.state
-    let result = await axios
-      .post("http://localhost:4000//user/signup", {
-        email: email,
-        password: password,
-        nickname: nickname,
-
-      })
-
-    // if (result.status === 200) {
-
-    // } else if ( ) { }
   };
 
   hideModal() {
@@ -109,19 +94,31 @@ class SignUp extends Component {
               <span style={{
                 paddingRight: "445px"
               }}>테그</span>
-              <SortTags id='sorttags' default={true} selected={false} />
+              <SortTags default={true} selected={false} />
             </div>
-
+            <div><span style={{
+              paddingRight: "28px"
+            }}>테그</span>
+              <input
+                style={{
+                  width: "400px",
+                  height: "30px",
+                  margin: "5px",
+                  borderRadius: "5px",
+                }}
+                type="Tag"
+                placeholder="테그를 클릭해주세요"
+              // onChange={this.handleInputValue("Tag")}
+              ></input>
+            </div>
           </div>
           <button id='close' onClick={this.hideModal}>닫기</button>
-          <button id='signup-button' onClick={this.handleInput} >회원가입</button>
+          <button id='signup-button' >회원가입</button>
+
         </div>
-
-
+        <button id='close' onClick={this.hideModal}>닫기</button>
+        <button id='signup-button' onClick={'fix this'} >회원가입</button>
       </div>
-
-
-
     )
   }
 }
