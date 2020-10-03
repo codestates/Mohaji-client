@@ -41,7 +41,7 @@ class SignUp extends Component {
           <div
             style={{ textAlign: 'center' }}
           >
-            <img className="signin-img" src="mohaji.png" />
+            <img className="signup-img" src="mohaji.png" />
             {isSocialLogin ?
               ("") : (
                 <div>
@@ -93,24 +93,10 @@ class SignUp extends Component {
             <div>
               <span style={{
                 paddingRight: "445px"
-              }}>테그</span>
+              }}>선호하는 태그</span>
               <SortTags default={true} selected={false} />
             </div>
-            <div><span style={{
-              paddingRight: "28px"
-            }}>테그</span>
-              <input
-                style={{
-                  width: "400px",
-                  height: "30px",
-                  margin: "5px",
-                  borderRadius: "5px",
-                }}
-                type="Tag"
-                placeholder="테그를 클릭해주세요"
-              // onChange={this.handleInputValue("Tag")}
-              ></input>
-            </div>
+            
           </div>
           <button id='close' onClick={this.hideModal}>닫기</button>
           <button id='signup-button' >회원가입</button>

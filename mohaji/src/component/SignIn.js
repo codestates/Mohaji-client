@@ -120,16 +120,17 @@ class SignIn extends Component {
     render() {
         return (
             <div className='signin'>
-                <div className='signin-center'>
+                <div className='signin-center' style={{width:'100%'}}>
                     <img className="signin-img" src="/mohaji.png"
                     />
-                    <div className='signin-email-input'>
+                    <div className='signin-email-input' style={{width:'100%'}}>
                         <input
                             style={{
-                                width: '70%',
+                                width: '100%',
                                 height: "30px",
-                                margin: "5px",
                                 borderRadius: "5px",
+                                padding:'1px',
+                                fontSize:'0.75em'
                             }}
                             type="email"
                             placeholder="이메일을 입력 해주세요"
@@ -139,10 +140,11 @@ class SignIn extends Component {
                     <div className='signin-password-input'>
                         <input
                             style={{
-                                width: '70%',
+                                width: '100%',
                                 height: "30px",
-                                margin: "5px",
                                 borderRadius: "5px",
+                                padding:'1px',
+                                fontSize:'0.75em'
                             }}
                             type="password"
                             placeholder="비밀번호를 입력 해주세요"
