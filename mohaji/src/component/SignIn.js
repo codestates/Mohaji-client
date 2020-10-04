@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './Signin.css';
 import {
     setLogin, setNavSignIn,
-    setShowTrue, setNavNull
+    setShowTrue, setNavNull, setSocialLogin, setToken
 } from '../actions'
 import axios from 'axios';
 import { GoogleLogin } from 'react-google-login'
@@ -46,6 +46,10 @@ class SignIn extends Component {
     //     this.googleSDK();
     // }
 
+    // 이전에 소셜 로그인으로 회원 가입을 했었는지 검증
+    // 회원가입 안했다면 회원가입 화면으로
+    // 회원가입 했다면 바로 로그인
+
     responseGoogle = async (googleUser) => {
         console.log(googleUser);
         let profile = googleUser.getBasicProfile();
@@ -64,12 +68,15 @@ class SignIn extends Component {
             withCredentials: true
         }).catch(err => (err.response))
 
+        console.log("소셜 파운드 확인", result.data.found)
         if (result.status === 200) {
             if (result.data.found) {
-                alert('환영합니다.')
+                this.props.dispatch(setLogin(true));
+                this.props.history.push('/');
             } else {
+                this.props.dispatch(setSocialLogin(true))
+                this.props.dispatch(setToken(id_token))
                 this.showModal()
-                //redux 써야함 state값이 유지되는 
             }
         } else if (result.status === 400) {
             alert('올바르지 않은 접근입니다.')
@@ -121,17 +128,17 @@ class SignIn extends Component {
     render() {
         return (
             <div className='signin'>
-                <div className='signin-center' style={{width:'100%'}}>
+                <div className='signin-center' style={{ width: '100%' }}>
                     <img className="signin-img" src="/mohaji.png"
                     />
-                    <div className='signin-email-input' style={{width:'100%'}}>
+                    <div className='signin-email-input' style={{ width: '100%' }}>
                         <input
                             style={{
                                 width: '100%',
                                 height: "30px",
                                 borderRadius: "5px",
-                                padding:'1px',
-                                fontSize:'0.75em'
+                                padding: '1px',
+                                fontSize: '0.75em'
                             }}
                             type="email"
                             placeholder="이메일을 입력 해주세요"
@@ -144,8 +151,8 @@ class SignIn extends Component {
                                 width: '100%',
                                 height: "30px",
                                 borderRadius: "5px",
-                                padding:'1px',
-                                fontSize:'0.75em'
+                                padding: '1px',
+                                fontSize: '0.75em'
                             }}
                             type="password"
                             placeholder="비밀번호를 입력 해주세요"
@@ -176,7 +183,7 @@ class SignIn extends Component {
 
 
                     <GoogleLogin
-                        clientId={"320452447938-pfoe0mkhd8777imaagpkakfo8ttird0k.apps.googleusercontent.com"}
+                        clientId={"905288929306-admpkans4d2qsc5d5lq8amo4ag6n2fke.apps.googleusercontent.com"}
                         buttonText="google"
                         onSuccess={this.responseGoogle}
 

@@ -51,16 +51,6 @@ class CommentCreate extends Component {
     })
 
 
-    // if (currSpot) {
-    //     console.log("확인!!!! : ", currSpot.id)
-    //     axios.post("http://localhost:4000/spot/comment", {
-    //         message: comment,
-    //         playspot_id: currSpot.id
-    //     })
-    //         .then(res => this.setState({ comment: '' }))
-    // }
-
-
 
 
   }
