@@ -5,6 +5,7 @@ import signinReducer from './signin';
 import showReducer from './show';
 import navReducer from './nav';
 import signupReducer from './signup';
+import filterTagReducer from './filterTag'
 
 export default combineReducers({
   spotReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   showReducer,
   navReducer,
   signupReducer,
+  filterTagReducer
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { setCurrSpot } from '../actions';
 import './SpotItem.css';
 
@@ -13,7 +13,7 @@ class SpotItem extends React.Component {
     let style = this.props.currSpot === this.props.spot ?
       { border: 'solid 1px #00ff00' } : undefined
     return (
-      <div className='spot-list'>
+      <div>
         <Link to='/spot-list/info'>
           <div
             className='spot-item'
