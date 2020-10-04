@@ -1,16 +1,17 @@
 .signin{
     border:  solid 5px #ff9f40;
+    width: 75%;
     margin: 10px;
-    color: #ff9f40;
     padding: 10px; 
+    margin: auto;
+    height: 70%;
 }
 .signin-center{
     text-align: center;
-
 }
+
 .signin-img{
-    width: 50%;
-    
+    width: 100%;
 }
 
 .signin-signup-button{
