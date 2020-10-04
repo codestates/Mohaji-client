@@ -1,0 +1,15 @@
+.map-filter {
+    float: right;
+    font-size: 0.8em;
+    border: solid 1px #000000;
+    border-radius: 4px;
+    background-color: #ffffff;
+    padding: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-top: 20px;
+    margin-right: 10px;
+    user-select: none;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+}

@@ -1,0 +1,25 @@
+.comment {
+    display: block;
+    width: inherit;
+    margin-top: 10px;
+    padding: 10px;
+    border-bottom: solid 1px #cfcfcf;
+}
+.nickname {
+    float: left;
+    font-size: 0.5em;
+    font-weight: 700;
+}
+
+.create_at {
+    float: none;
+    text-align: right;
+    font-size: 0.2em;
+    color: #5c5c5c
+}
+
+.msg {
+    margin-top: 2px;
+    float: none;
+    font-size: 0.75em;
+}

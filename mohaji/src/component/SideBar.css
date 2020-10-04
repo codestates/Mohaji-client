@@ -1,0 +1,15 @@
+#side-bar {
+    float: left;
+    background-color: #ffffff;
+    user-select: none;
+    width: 15%;
+    overflow: auto;
+}
+
+#side-extend {
+    float: left;
+    background-color: #ffffff;
+    border-left: solid 1px #d6d6d6;
+    width: 17.5%;
+    overflow: auto;
+}

@@ -1,0 +1,15 @@
+#re-search {
+    position: fixed;
+    font-size: 0.8em;
+    border: solid 2px black;
+    border-radius: 6px;
+    background-color: #3ec8ff;
+    padding: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    top: 6px;
+    right: 110px;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+}
