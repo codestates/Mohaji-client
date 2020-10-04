@@ -7,6 +7,7 @@ import FilterOfTags from "./FilterOfTags";
 import ReSearch from "./ReSearch";
 import Axios from "axios";
 import './Map.css';
+import Maphelper from "./Maphelper";
 
 class Map extends React.Component {
   constructor(props) {
@@ -60,18 +61,24 @@ class Map extends React.Component {
       }, [])
       for (let i of searchTag) { // i가 현재 search하는 tag이다.
         searchresult.push(...await new Promise((res, rej) => {
-          place.keywordSearch(i, (result, status) => {
+          let temp = [];
+          place.keywordSearch(i, (result, status, p) => {
             if (status === kakao.maps.services.Status.OK) {
-              res(result);
+              temp.push(...result);
+              if (p.hasNextPage) {
+                p.nextPage();
+              } else {
+                res(temp);
+              }
             } else {
-              res([])
+              res(temp);
             }
-          },{
+          }, {
             useMapCenter: true,
             useMapBounds: true
-          })
-        }))
-      }
+          });
+        }));
+      };
       let markList = searchresult.reduce((acc, val, i) => {
         let position = new kakao.maps.LatLng(val.y, val.x);
         let title = val.place_name;
@@ -87,7 +94,6 @@ class Map extends React.Component {
         markList
       })
       this.props.dispatch(setSpotList(searchresult));
-      console.log(searchresult);
     })()
   }
 
@@ -97,6 +103,7 @@ class Map extends React.Component {
       <div>
         <ReSearch click={this.click}/>
         <FilterOfTags />
+        <Maphelper map={this.state.map}/>
         <div id="map" style={{height}}></div>
       </div>
     );
