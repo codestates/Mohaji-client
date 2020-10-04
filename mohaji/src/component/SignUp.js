@@ -46,7 +46,6 @@ class SignUp extends Component {
         withCredentials: true
       }).catch(err => err.response)
 
-      console.log("상태 확인", result.status)
       if (result.status === 200) {
         this.props.history.push('/')
       }
@@ -63,7 +62,6 @@ class SignUp extends Component {
   socialHanglSignup = async () => {
     const { nickname } = this.state;
     const { googleToken } = this.props;
-    console.log("토큰 들어가는지 확인", googleToken)
     if (nickname !== '') {
       let result = await axios({
         method: 'post',
