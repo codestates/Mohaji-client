@@ -163,8 +163,6 @@ class SignUp extends Component {
 
 
         </div>
-        {/* <button id='close' onClick={this.hideModal}>닫기</button>
-        <button id='signup-button' onClick={handleSignup} >회원가입</button> */}
       </div>
     )
   }
