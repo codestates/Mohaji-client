@@ -15,11 +15,15 @@ class SignUp extends Component {
       email: "",
       password: "",
       nickname: "",
-
+      tag: {}
     }
     this.handleInputValue = this.handleInputValue.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.tagclick = this.tagclick.bind(this);
 
+  }
+  componentWillUnmount() {
+    this.hideModal();
   }
 
   handleInputValue = (key) => (e) => {
@@ -30,9 +34,15 @@ class SignUp extends Component {
     this.props.dispatch(setShowFalse());
   }
 
+  tagclick(obj) {
+    this.setState({
+      tag: obj
+    })
+  }
+
 
   localHanglSignup = async () => {
-    const { email, password, nickname } = this.state
+    const { email, password, nickname, tag } = this.state
 
     if (email !== '' && password !== '' && nickname !== '') {
       let result = await axios({
@@ -41,7 +51,8 @@ class SignUp extends Component {
         data: {
           email,
           password,
-          nickname
+          nickname,
+          tag
         },
         withCredentials: true
       }).catch(err => err.response)
@@ -60,7 +71,7 @@ class SignUp extends Component {
   }
 
   socialHanglSignup = async () => {
-    const { nickname } = this.state;
+    const { nickname, tag } = this.state;
     const { googleToken } = this.props;
     if (nickname !== '') {
       let result = await axios({
@@ -69,7 +80,7 @@ class SignUp extends Component {
         data: {
           nickname,
           token: googleToken,
-          tag: {}
+          tag
         },
         withCredentials: true
       }).catch(err => err.response)
@@ -95,7 +106,7 @@ class SignUp extends Component {
           <div
             style={{ textAlign: 'center' }}
           >
-            <img className="signin-img" src="mohaji.png" />
+            <img className="signup-img" src="mohaji.png" />
             {isSocial ?
               ("") : (
                 <div>
@@ -148,7 +159,7 @@ class SignUp extends Component {
               <span style={{
                 paddingRight: "445px"
               }}>선호하는 태그</span>
-              <SortTags default={true} selected={false} />
+              <SortTags default={true} selected={false} output={this.tagclick}/>
             </div>
 
           </div>

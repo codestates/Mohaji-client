@@ -54,7 +54,7 @@ class NavBar extends Component {
         {this.props.isLogin ?
           (<div id='nav-sign-in'>
             <GoogleLogout
-              clientId={"905288929306-admpkans4d2qsc5d5lq8amo4ag6n2fke.apps.googleusercontent.com"}
+              clientId={"320452447938-pfoe0mkhd8777imaagpkakfo8ttird0k.apps.googleusercontent.com"}
               render={(ren) => (
                 <div className='nav-item'
                   onClick={() => {
