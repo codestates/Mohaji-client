@@ -71,16 +71,17 @@ class SortTags extends React.Component {
   }
 
   render() {
+    let noclicked = !this.props.noclicked;
     return (
       <div>
         {this.state.tag.map(val => (
-        <Tag
-          key={val.id}
-          tagName={val.tag_name}
-          isSelect={this.state.select[val.id]}
-          click={this.click(val.id)}
-          selected={this.props.selected}
-        />
+          <Tag
+            key={val.id}
+            tagName={val.tag_name}
+            isSelect={this.state.select[val.id]}
+            click={noclicked ? this.click(val.id) : () => { }}
+            selected={this.props.selected}
+          />
         ))}
       </div>
     );
