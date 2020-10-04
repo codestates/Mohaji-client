@@ -4,6 +4,7 @@ import commentReducer from './comment';
 import signinReducer from './signin';
 import showReducer from './show';
 import navReducer from './nav';
+import signupReducer from './signup';
 
 export default combineReducers({
   spotReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   signinReducer,
   showReducer,
   navReducer,
+  signupReducer,
 });

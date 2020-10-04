@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './Signin.css';
 import {
     setLogin, setNavSignIn,
-    setShowTrue, setNavNull
+    setShowTrue, setNavNull, setSocialLogin, setToken
 } from '../actions'
 import axios from 'axios';
 import { GoogleLogin } from 'react-google-login'
@@ -45,6 +45,10 @@ class SignIn extends Component {
     //     this.googleSDK();
     // }
 
+    // 이전에 소셜 로그인으로 회원 가입을 했었는지 검증
+    // 회원가입 안했다면 회원가입 화면으로
+    // 회원가입 했다면 바로 로그인
+
     responseGoogle = async (googleUser) => {
         console.log(googleUser);
         let profile = googleUser.getBasicProfile();
@@ -63,11 +67,16 @@ class SignIn extends Component {
             withCredentials: true
         }).catch(err => (err.response))
 
+        console.log("소셜 파운드 확인", result.data.found)
         if (result.status === 200) {
-            if (result.data.found) {
+            if (result.data.found) { // false라면 회원가입 화면으로
+
                 alert('환영합니다.')
             } else {
+                this.props.dispatch(setSocialLogin(true))
+                this.props.dispatch(setToken(id_token))
                 this.showModal()
+
                 //redux 써야함 state값이 유지되는 
             }
         } else if (result.status === 400) {

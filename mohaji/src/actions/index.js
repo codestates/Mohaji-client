@@ -6,6 +6,9 @@ export const SET_ISMOREREAD = 'SET_ISMOREREAD';
 export const SET_LOGIN = 'SET_LOGIN';
 export const SET_SHOW = 'SET_SHOW';
 export const SET_NAV = 'SET_NAV'
+export const SET_SIGNUP = 'SET_SIGNUP';
+export const SET_SOCIALLOGIN = 'SET_SOCIALLOGIN';
+export const SET_TOKEN = 'SET_TOKEN';
 
 export const setCommentList = commentList => ({
   type: SET_COMMENTLIST,
@@ -65,4 +68,19 @@ export const setNavSignIn = () => ({
 export const setNavNull = () => ({
   type: SET_NAV,
   component: 'Null'
+})
+
+export const setSignup = bool => ({
+  type: SET_SIGNUP,
+  bool
+})
+
+export const setSocialLogin = bool => ({
+  type: SET_SOCIALLOGIN,
+  bool
+})
+
+export const setToken = string => ({
+  type: SET_TOKEN,
+  string
 })

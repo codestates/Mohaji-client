@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { setShowFalse } from '../actions';
+import { setShowFalse, setSignup, setSocialLogin, setLogin } from '../actions';
 import './SignUp.css';
 import SortTags from './SortTags';
-import axios from 'axios'
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+
 
 class SignUp extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      isSocialLogin: false,
       email: "",
       password: "",
       nickname: "",
@@ -30,8 +31,63 @@ class SignUp extends Component {
   }
 
 
+  localHanglSignup = async () => {
+    const { email, password, nickname } = this.state
+
+    if (email !== '' && password !== '' && nickname !== '') {
+      let result = await axios({
+        method: 'post',
+        url: 'http://localhost:4000/user/signup',
+        data: {
+          email,
+          password,
+          nickname
+        },
+        withCredentials: true
+      }).catch(err => err.response)
+
+      console.log("상태 확인", result.status)
+      if (result.status === 200) {
+        this.props.history.push('/')
+      }
+      if (result.status === 409) {
+        alert('이미 존재하는 이메일 입니다.')
+      }
+    } else {
+      alert('회원 정보를 모두 입력해 주세요.')
+    }
+
+
+  }
+
+  socialHanglSignup = async () => {
+    const { nickname } = this.state;
+    const { googleToken } = this.props;
+    console.log("토큰 들어가는지 확인", googleToken)
+    if (nickname !== '') {
+      let result = await axios({
+        method: 'post',
+        url: 'http://localhost:4000/user/social-signup',
+        data: {
+          nickname,
+          token: googleToken,
+          tag: {}
+        },
+        withCredentials: true
+      }).catch(err => err.response)
+      if (result.status === 201) {
+        this.props.history.push('/')
+      }
+    } else {
+      alert('닉네임을 입력해 주세요.')
+    }
+  }
+
+
+
   render() {
-    let { isSocialLogin } = this.state
+    let { isSocial } = this.props
+    const { localHanglSignup, socialHanglSignup } = this;
 
     return (
 
@@ -42,7 +98,7 @@ class SignUp extends Component {
             style={{ textAlign: 'center' }}
           >
             <img className="signin-img" src="mohaji.png" />
-            {isSocialLogin ?
+            {isSocial ?
               ("") : (
                 <div>
                   <span style={{
@@ -113,18 +169,26 @@ class SignUp extends Component {
             </div>
           </div>
           <button id='close' onClick={this.hideModal}>닫기</button>
-          <button id='signup-button' >회원가입</button>
+          {isSocial ?
+            <div><button id='signup-button' onClick={socialHanglSignup}>회원가입</button></div>
+            :
+            <div><button id='signup-button' onClick={localHanglSignup}>회원가입</button></div>
+          }
+
 
         </div>
-        <button id='close' onClick={this.hideModal}>닫기</button>
-        <button id='signup-button' onClick={'fix this'} >회원가입</button>
+        {/* <button id='close' onClick={this.hideModal}>닫기</button>
+        <button id='signup-button' onClick={handleSignup} >회원가입</button> */}
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  ...state.showReducer
+  ...state.showReducer,
+  isSocial: state.signupReducer.isSocial,
+  googleToken: state.signupReducer.googleToken
 })
 
-export default connect(mapStateToProps)(SignUp);
+export default withRouter(connect(mapStateToProps)(SignUp));
+
